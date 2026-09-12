@@ -18,15 +18,32 @@ def get_current_html():
     return "Файл index.html не найден."
 
 def run_git_push(commit_message):
-    """Инструмент для автоматической отправки изменений в ветку develop"""
+    """Инструмент для безопасной автоматической отправки изменений ТОЛЬКО в ветку develop"""
     try:
+        # Жестко заставляем Git переключиться на develop перед любыми действиями
+        subprocess.run(["git", "checkout", "develop"], check=True)
+        
+        # Добавляем файлы и делаем сохранение
         subprocess.run(["git", "add", "."], check=True)
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
-        # МЕНЯЕМ ТУТ: отправляем в ветку develop вместо main
+        
+        # Отправляем изменения строго в ветку develop на GitHub
         subprocess.run(["git", "push", "origin", "develop"], check=True)
-        return "Изменения успешно закоммичены и отправлены в ветку develop!"
+        return "Изменения успешно сохранены локально и отправлены в ветку DEVELOP!"
     except subprocess.CalledProcessError as e:
-        return f"Ошибка при работе с Git: {str(e)}"
+        return f"Ошибка при работе с Git в ветке develop: {str(e)}"
+
+
+#def run_git_push(commit_message):
+#   """Инструмент для автоматической отправки изменений в ветку develop"""
+#    try:
+#        subprocess.run(["git", "add", "."], check=True)
+#        subprocess.run(["git", "commit", "-m", commit_message], check=True)
+#        # МЕНЯЕМ ТУТ: отправляем в ветку develop вместо main
+#        subprocess.run(["git", "push", "origin", "develop"], check=True)
+#        return "Изменения успешно закоммичены и отправлены в ветку develop!"
+#    except subprocess.CalledProcessError as e:
+#        return f"Ошибка при работе с Git: {str(e)}"
 
 
 #def run_git_push(commit_message):
