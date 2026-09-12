@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Ёлочка - ватные игрушки Ольги Деминой</title>
+    <!-- Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <!-- Шапка сайта (Хедер) -->
+    <header class="bg-white shadow-lg p-4 mb-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-red-500">Моя Ёлочка</h1>
+            <h2 class="text-xl font-medium">ватные игрушки Ольги Деминой</h2>
+        </div>
+    </header>
+
+    <!-- Блок контактов -->
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">Контакты</h2>
+        <div class="flex justify-center gap-4">
+            <a href="https://t.me/olga_demina" class="bg-blue-500 hover:bg-blue-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                <span class="mr-2"><i class="fab fa-whatsapp"></i></span>
+                WhatsApp
+            </a>
+            <a href="https://www.instagram.com/olga_demina/" class="bg-red-500 hover:bg-red-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                <span class="mr-2"><i class="fab fa-instagram"></i></span>
+                Instagram
+            </a>
+            <a href="https://vk.com/olga_demina" class="bg-green-500 hover:bg-green-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                <span class="mr-2"><i class="fab fa-vk"></i></span>
+                VKонтакте
+            </a>
+            <a href="https://www.livemaster.ru/olga-demina" class="bg-orange-500 hover:bg-orange-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                <span class="mr-2"><i class="fas fa-gift"></i></span>
+                Ярмарка Мастеров
+            </a>
+            <a href="https://ru.pinterest.com/moya_elochka/" class="bg-purple-500 hover:bg-purple-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                <span class="mr-2"><i class="fab fa-pinterest"></i></span>
+                Pinterest
+            </a>
+        </div>
+    </section>
+
+    <!-- Каталог игрушек (Сетка/Grid карточек) -->
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">Каталог игрушек</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Тестовая карточка игрушки "В наличии" -->
+            <div class="card shadow-lg p-4 bg-white">
+                <img src="https://via.placeholder.com/150x150" alt="Игрушка" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-semibold mb-2">Игрушка 1</h3>
+                <p class="text-gray-600">Цена: 500 ₽</p>
+                <p class="text-green-500">В наличии</p>
+            </div>
+            
+            <!-- Тестовая карточка игрушки "Доступно для заказа" -->
+            <div class="card shadow-lg p-4 bg-white">
+                <img src="https://via.placeholder.com/150x150" alt="Игрушка" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-semibold mb-2">Игрушка 2</h3>
+                <p class="text-gray-600">Цена: 600 ₽</p>
+                <p class="text-red-500">Доступно для заказа</p>
+                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white p-2 px-4 rounded flex items-center justify-center">
+                    <span class="mr-2"><i class="fas fa-envelope"></i></span>
+                    Написать мастеру
+                </a>
+            </div>
+            
+            <!-- Добавьте дополнительные карточки игрушек здесь -->
+        </div>
+    </section>
+
+    <!-- Подключаем JavaScript через CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+</body>
+</html>
