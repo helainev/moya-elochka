@@ -1,3 +1,12 @@
+<!-- 
+  ИНСТРУКЦИЯ ДЛЯ ИИ (ПРОМПТ ДЛЯ ПРАВОК):
+  Сайт: Моя Ёлочка - ватные игрушки Ольги Деминой.
+  Стек: HTML + Tailwind CSS + JavaScript.
+  Стиль: Премиальный новогодний, глубокий ночной фон (slate-900), анимированный снегопад.
+  Цвета кнопок: WhatsApp (emerald-600), VK (blue-600), Ярмарка Мастеров (red-700), Pinterest (rose-600).
+  Карточки товаров: Полупрозрачные (bg-slate-800/80 backdrop-blur), rounded-2xl, пути к фото: img/elochka1.jpg.
+-->
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -43,7 +52,7 @@
     </section>
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
         <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
-            <img src="img/elochka1.jpg" alt="Игрушка" class="rounded-xl object-cover w-full h-56">
+            <img src="img/elochka1.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
             <h3 class="text-xl font-bold mt-4">Игрушка 1</h3>
             <p class="text-base mt-2">Описание игрушки</p>
             <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm inline-block mt-4">В наличии</span>
@@ -52,7 +61,7 @@
             </a>
         </div>
         <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
-            <img src="img/elochka2.jpg" alt="Игрушка" class="rounded-xl object-cover w-full h-56">
+            <img src="img/elochka2.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
             <h3 class="text-xl font-bold mt-4">Игрушка 2</h3>
             <p class="text-base mt-2">Описание игрушки</p>
             <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
