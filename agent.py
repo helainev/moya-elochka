@@ -131,6 +131,6 @@ def ask_agent(user_command):
 if __name__ == "__main__":
     # Сюда пишите любую команду для вашего сайта на русском языке!
     # Например, давайте проверим, как он изменит ссылку на ВКонтакте:
-    text_command = "Измени в контактах ссылку на ВКонтакте, поставь туда адрес: https://m.vk.ru/moya_elochka, измени контактах ссылку на instagramm, поставь туда адрес: в https://www.instagram.com/moya_elochka/"
+    text_command = """Добавь в каталог карточку. Название: 'Дед Мороз', цена: '10500', статус: 'В наличии', изображения: ["img/moroz1.jpg","img/moroz2.jpg","img/moroz3.jpg","img/moroz4.jpg","img/moroz5.jpg","img/moroz6.jpg"]. Описание придумай сам."""
     
     ask_agent(text_command)
