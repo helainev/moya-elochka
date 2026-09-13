@@ -3,28 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Управление сайтом — Моя Ёлочка</title>
+    <title>Панель управления — Моя Ёлочка</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="bg-gradient-to-b from-slate-900 via-slate-800 to-emerald-950 text-slate-100 min-h-screen font-sans flex items-center justify-center p-4">
 
-    <!-- Форма авторизации -->
-    <div id="login-block" class="bg-slate-800/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-700 text-center">
-        <div class="text-5xl mb-4 text-amber-400"><i class="fas fa-tree"></i></div>
-        <h1 class="text-2xl font-serif font-bold text-amber-400 mb-6">Вход в панель управления</h1>
-        <input type="password" id="pass-input" placeholder="Введите пароль" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-amber-400 mb-4 text-center">
-        <button onclick="checkPassword()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-xl transition-all shadow-lg">Войти</button>
-        <p id="login-error" class="text-rose-400 text-sm mt-3 hidden">Неверный пароль, попробуйте еще раз ❄️</p>
-    </div>
-
-    <!-- Главная панель управления -->
-    <div id="admin-panel" class="bg-slate-800/90 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-lg w-full border border-slate-700 hidden">
-        <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
-            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
-                <i class="fas fa-magic"></i> Добавить игрушку
-            </h2>
-            <button onclick="logout()" class="text-sm text-slate-400 hover:text-rose-400"><i class="fas fa-sign-out-alt"></i> Выйти</button>
+    <div class="bg-slate-800/90 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-lg w-full border border-slate-700">
+        <div class="text-center mb-6">
+            <div class="text-5xl text-amber-400 mb-2"><i class="fas fa-tree"></i></div>
+            <h2 class="text-2xl font-serif font-bold text-amber-400">Добавить игрушку в каталог</h2>
+            <p class="text-sm text-slate-400 mt-1">Форма генерирует текст для ИИ-агента</p>
         </div>
 
         <div class="space-y-4">
@@ -44,97 +33,39 @@
                 </select>
             </div>
             <div>
-                <label class="block text-sm text-slate-400 mb-1">Фотография игрушки</label>
-                <input type="file" id="toy-image" accept="image/*" class="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-amber-500 file:text-slate-900 hover:file:bg-amber-600 file:cursor-pointer">
+                <label class="block text-sm text-slate-400 mb-1">Имя файла картинки (из папки img/)</label>
+                <input type="text" id="toy-image" placeholder="Например: elochka3.jpg" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
             </div>
-            <button onclick="uploadToy()" id="submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-6">
-                Опубликовать на сайте
+            
+            <button onclick="generateCommand()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-xl transition-all shadow-lg mt-6">
+                Создать команду для Агента
             </button>
+        </div>
+
+        <!-- Поле вывода команды -->
+        <div id="result-box" class="mt-6 hidden">
+            <label class="block text-sm text-amber-400 mb-1 font-bold">Скопируйте этот текст для agent.py:</label>
+            <textarea id="command-output" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-emerald-400 font-mono focus:outline-none" readonly></textarea>
         </div>
     </div>
 
     <script>
-        const SECRET_PASSWORD = "Елочка2026";
-        const GITHUB_TOKEN = "ghp_bE2hOZPGeDEshSatmephCE0pIzb3hc3W2S2D"; 
-        const REPO_OWNER = "helainev";
-        const REPO_NAME = "moya-elochka";
-
-        function checkPassword() {
-            if(document.getElementById('pass-input').value === SECRET_PASSWORD) {
-                document.getElementById('login-block').classList.add('hidden');
-                document.getElementById('admin-panel').classList.remove('hidden');
-            } else {
-                document.getElementById('login-error').classList.remove('hidden');
-            }
-        }
-
-        function logout() {
-            document.getElementById('pass-input').value = '';
-            document.getElementById('login-block').classList.remove('hidden');
-            document.getElementById('admin-panel').classList.add('hidden');
-        }
-
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
-
-        async function uploadToy() {
+        function generateCommand() {
             const name = document.getElementById('toy-name').value;
             const price = document.getElementById('toy-price').value;
             const status = document.getElementById('toy-status').value;
-            const fileInput = document.getElementById('toy-image').files;
-            const btn = document.getElementById('submit-btn');
-
-            if(!name || !price || fileInput.length === 0) {
-                alert("Пожалуйста, заполните все поля и выберите фото! ❄️");
+            const img = document.getElementById('toy-image').value;
+            
+            if(!name || !price || !img) {
+                alert("Пожалуйста, заполните поля! ❄️");
                 return;
             }
-
-            btn.disabled = true;
-            btn.innerText = 'Сохраняю в интернет...';
-
-            try {
-                const base64Image = await fileToBase64(fileInput[0]);
-                const newToy = { name, price, status, image: base64Image };
-
-                let currentData = [];
-                let sha = null;
-                const url = `https://github.com{REPO_OWNER}/${REPO_NAME}/contents/database.json`;
-                
-                try {
-                    const res = await fetch(url, { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } });
-                    if(res.ok) {
-                        const fileInfo = await res.json();
-                        sha = fileInfo.sha;
-                        currentData = JSON.parse(decodeURIComponent(escape(atob(fileInfo.content))));
-                    }
-                } catch(e) {}
-
-                currentData.unshift(newToy);
-
-                const putRes = await fetch(url, {
-                    method: 'PUT',
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        message: `Admin: добавлена игрушка ${name}`,
-                        content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
-                        sha: sha
-                    })
-                });
-
-                if(putRes.ok) {
-                    alert("Ура! Игрушка успешно опубликована! Через 30 секунд она появится на главной странице сайта.");
-                    document.getElementById('toy-name').value = '';
-                    document.getElementById('toy-price').value = '';
-                    document.getElementById('toy-image').value = '';
-                } else { alert("Ошибка при отправке на сервер."); }
-            } catch (error) { alert("Ошибка: " + error.message); }
-            finally { btn.disabled = false; btn.innerText = 'Опубликовать на сайте'; }
+            
+            const statusText = status === 'instock' ? 'В наличии' : 'Доступно для заказа';
+            const cmd = `Добавь в каталог карточку. Название: '${name}', цена: '${price}', статус: '${statusText}', изображение: 'img/${img}'. Описание придумай сам.`;
+            
+            document.getElementById('command-output').value = cmd;
+            document.getElementById('result-box').classList.remove('hidden');
         }
     </script>
 </body>
