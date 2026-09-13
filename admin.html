@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Панель управления — Моя Ёлочка</title>
+    <!-- Подключаем официальный актуальный Tailwind CSS -->
     <script src="https://tailwindcss.com"></script>
+    <!-- Подключаем иконки Font Awesome -->
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="bg-gradient-to-b from-slate-900 via-slate-800 to-emerald-950 text-slate-100 min-h-screen font-sans flex items-center justify-center p-4">
@@ -33,8 +35,8 @@
                 </select>
             </div>
             <div>
-                <label class="block text-sm text-slate-400 mb-1">Имя файла картинки (из папки img/)</label>
-                <input type="text" id="toy-image" placeholder="Например: elochka3.jpg" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                <label class="block text-sm text-slate-400 mb-1">Имена файлов картинок (через запятую, если несколько)</label>
+                <input type="text" id="toy-image" placeholder="Например: elochka3.jpg, elochka3_side.jpg" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-amber-400">
             </div>
             
             <button onclick="generateCommand()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-xl transition-all shadow-lg mt-6">
@@ -54,15 +56,19 @@
             const name = document.getElementById('toy-name').value;
             const price = document.getElementById('toy-price').value;
             const status = document.getElementById('toy-status').value;
-            const img = document.getElementById('toy-image').value;
+            const imgInput = document.getElementById('toy-image').value;
             
-            if(!name || !price || !img) {
-                alert("Пожалуйста, заполните поля! ❄️");
+            if(!name || !price || !imgInput) {
+                alert("Пожалуйста, заполните все поля! ❄️");
                 return;
             }
             
+            // Разбиваем строку по запятым и превращаем в аккуратный список картинок
+            const imagesArray = imgInput.split(',').map(i => `img/${i.trim()}`);
             const statusText = status === 'instock' ? 'В наличии' : 'Доступно для заказа';
-            const cmd = `Добавь в каталог карточку. Название: '${name}', цена: '${price}', статус: '${statusText}', изображение: 'img/${img}'. Описание придумай сам.`;
+            
+            // Формируем четкую команду для ИИ со списком изображений
+            const cmd = `Добавь в каталог карточку. Название: '${name}', цена: '${price}', статус: '${statusText}', изображения: ${JSON.stringify(imagesArray)}. Описание придумай сам.`;
             
             document.getElementById('command-output').value = cmd;
             document.getElementById('result-box').classList.remove('hidden');
