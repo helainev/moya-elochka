@@ -73,8 +73,7 @@
         async function loadDynamicCatalog() {
             const container = document.getElementById('catalog-container');
             // Читаем базу данных из корня вашего репозитория
-            const url = 'https://githubusercontent.com';
-            
+            const url = 'database.json';           
             try {
                 const res = await fetch(url);
                 if (!res.ok) throw new Error('База данных пуста');
