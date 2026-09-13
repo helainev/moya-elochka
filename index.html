@@ -3,7 +3,7 @@
   Сайт: Моя Ёлочка - ватные игрушки Ольги Деминой.
   Стек: HTML + Tailwind CSS + JavaScript.
   Стиль: Премиальный новогодний, глубокий ночной фон (slate-900), анимированный снегопад.
-  Карточки товаров поддерживают интерактивный слайдер изображений.
+  Поддерживает динамическую базу данных из файла database.json со слайдером.
 -->
 <!DOCTYPE html>
 <html lang="ru">
@@ -11,8 +11,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя Ёлочка — Авторские ватные игрушки Ольги Деминой</title>
+    <!-- Автономный скрипт стилей, который не блокируется браузерами -->
     <script src="https://jsdelivr.net"></script>
-    <!-- Исправлено: подключены правильные иконки Font Awesome для стрелочек -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         @keyframes snowfall {
@@ -28,16 +28,13 @@
 </head>
 <body class="bg-gradient-to-b from-slate-900 via-slate-800 to-emerald-950 text-slate-100 min-h-screen relative overflow-x-hidden">
     
-    <!-- Контейнер для падающего снега -->
     <div id="snowfall" class="absolute inset-0 pointer-events-none z-50 overflow-hidden"></div>
 
-    <!-- Шапка сайта -->
     <header class="text-center py-12 relative z-10">
         <h1 class="text-5xl md:text-6xl font-serif font-bold text-amber-400 drop-shadow-lg">Моя Ёлочка</h1>
         <p class="text-xl md:text-2xl mt-3 italic font-light text-slate-300">Авторские ватные игрушки Ольги Деминой 🎄❄️</p>
     </header>
 
-    <!-- Блок социальных сетей -->
     <section class="flex flex-wrap justify-center gap-4 pb-6 relative z-10 px-4">
         <a href="https://t.me" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg shadow-emerald-900/30">
             <i class="fab fa-telegram text-lg"></i> Telegram
@@ -50,38 +47,12 @@
         </a>
     </section>
 
-    <!-- Динамический каталог игрушек -->
+    <!-- Сюда товары будут подгружаться сами из базы данных -->
     <main class="max-w-7xl mx-auto px-4 py-8 relative z-10">
-        <section id="catalog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Карточка Деда Мороза -->
-            <div class="bg-slate-800/70 backdrop-blur rounded-2xl p-5 shadow-2xl text-center flex flex-col justify-between border border-slate-700/50 relative group transition-all duration-300 hover:border-amber-500/30">
-                <div class="relative overflow-hidden rounded-xl bg-slate-900/40 p-2 flex items-center justify-center h-96">
-                    <img id="toy-img-0" src="img/moroz1.jpg" alt="Дед Мороз" class="max-h-full max-w-full object-contain transition-all duration-300 transform">
-                    <button id="toy-img-0-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-slate-950 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg border border-slate-700"><i class="fas fa-chevron-left text-sm"></i></button>
-                    <button id="toy-img-0-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-slate-950 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg border border-slate-700"><i class="fas fa-chevron-right text-sm"></i></button>
-                </div>
-                <div class="flex flex-col flex-grow justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mt-4 text-slate-100 font-serif">Дед Мороз</h3>
-                        <p class="text-amber-400 font-bold text-xl mt-2 tracking-wide">10 500 руб.</p>
-                    </div>
-                    <div>
-                        <p class="text-slate-300 mt-2 text-sm leading-relaxed">Дед Мороз, ведущий разговор, не забывайте об этом, если хотите вовремя получить подарок!</p>
-                        <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-sm inline-block mt-4 font-medium"><i class="fas fa-check-circle mr-1"></i> В наличии</span>
-                        <a href="https://t.me" target="_blank" class="bg-slate-700 hover:bg-amber-500 hover:text-slate-950 text-white px-5 py-2.5 rounded-xl mt-4 font-bold flex items-center gap-2 transition-all justify-center shadow-md">
-                            <i class="fas fa-shopping-bag"></i> Купить
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+        <section id="catalog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></section>
     </main>
 
-    <!-- Скрипты для работы спецэффектов сайта -->
     <script>
-        // 1. АНИМАЦИЯ ПАДАЮЩЕГО СНЕГА
         const snowfallContainer = document.getElementById('snowfall');
         const createSnowflake = () => {
             if (!snowfallContainer) return;
@@ -94,46 +65,84 @@
             snowflake.style.top = '-10px';
             snowflake.style.animationDuration = Math.random() * 3 + 3 + 's';
             snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-            
             snowfallContainer.appendChild(snowflake);
             setTimeout(() => snowflake.remove(), 5000);
         };
         setInterval(createSnowflake, 120);
 
-        // 2. ИНТЕРАКТИВНАЯ ЛОГИКА СЛАЙДЕРА КАРТИНОК ДЛЯ ДЕДА МОРОЗА
-        document.addEventListener('DOMContentLoaded', function() {
-            // Массив со всеми 6 ракурсами Деда Мороза
-            const morozImages = [
-                "img/moroz1.jpg",
-                "img/moroz2.jpg",
-                "img/moroz3.jpg",
-                "img/moroz4.jpg",
-                "img/moroz5.jpg",
-                "img/moroz6.jpg"
-            ];
+        async function loadDynamicCatalog() {
+            const container = document.getElementById('catalog-container');
+            // Читаем базу данных из корня вашего репозитория
+            const url = 'https://githubusercontent.com';
             
-            let currentIdx = 0;
-            
-            const imgElement = document.getElementById('toy-img-0');
-            const prevBtn = document.getElementById('toy-img-0-prev');
-            const nextBtn = document.getElementById('toy-img-0-next');
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('База данных пуста');
+                const toys = await res.json();
+                
+                toys.forEach((toy, toyIndex) => {
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-800/70 backdrop-blur rounded-2xl p-5 shadow-2xl text-center flex flex-col justify-between border border-slate-700/50 relative group transition-all duration-300 hover:border-amber-500/30";
+                    
+                    const images = Array.isArray(toy.images) ? toy.images : [toy.image];
+                    let currentImgIdx = 0;
+                    const cardId = `toy-img-${toyIndex}`;
 
-            if (imgElement && prevBtn && nextBtn) {
-                // Клик по левой стрелочке (Назад)
-                prevBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    currentIdx = (currentIdx - 1 + morozImages.length) % morozImages.length;
-                    imgElement.src = morozImages[currentIdx];
-                });
+                    const isAvailable = toy.status === 'instock';
+                    const statusBadge = isAvailable 
+                        ? '<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-sm inline-block mt-4 font-medium"><i class="fas fa-check-circle mr-1"></i> В наличии</span>'
+                        : '<span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full text-sm inline-block mt-4 font-medium"><i class="fas fa-clock mr-1"></i> Под заказ</span>';
+                    
+                    const hasMultipleImages = images.length > 1;
+                    const prevBtn = hasMultipleImages ? `<button id="${cardId}-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-slate-950 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg border border-slate-700"><i class="fas fa-chevron-left text-sm"></i></button>` : '';
+                    const nextBtn = hasMultipleImages ? `<button id="${cardId}-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-900/70 hover:bg-slate-950 text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg border border-slate-700"><i class="fas fa-chevron-right text-sm"></i></button>` : '';
 
-                // Клик по правой стрелочке (Вперёд)
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    currentIdx = (currentIdx + 1) % morozImages.length;
-                    imgElement.src = morozImages[currentIdx];
+                    card.innerHTML = `
+                        <div class="relative overflow-hidden rounded-xl bg-slate-900/40 p-2 flex items-center justify-center h-96">
+                            <img id="${cardId}" src="${images[0]}" alt="${toy.name}" class="max-h-full max-w-full object-contain transition-all duration-300 transform">
+                            ${prevBtn}
+                            ${nextBtn}
+                        </div>
+                        <div class="flex flex-col flex-grow justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold mt-4 text-slate-100 font-serif">${toy.name}</h3>
+                                <p class="text-amber-400 font-bold text-xl mt-2 tracking-wide">${toy.price}</p>
+                            </div>
+                            <div>
+                                ${statusBadge}
+                                <a href="https://t.me" target="_blank" class="bg-slate-700 hover:bg-amber-500 hover:text-slate-950 text-white px-5 py-2.5 rounded-xl mt-4 font-bold flex items-center gap-2 transition-all justify-center shadow-md">
+                                    <i class="${isAvailable ? 'fas fa-shopping-bag' : 'fas fa-paper-plane'}"></i> 
+                                    ${isAvailable ? 'Купить' : 'Заказать у мастера'}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+
+                    if (hasMultipleImages) {
+                        const imgEl = card.querySelector(`#${cardId}`);
+                        card.querySelector(`#${cardId}-prev`).addEventListener('click', (e) => {
+                            e.preventDefault(); e.stopPropagation();
+                            currentImgIdx = (currentImgIdx - 1 + images.length) % images.length;
+                            imgEl.src = images[currentImgIdx];
+                        });
+                        card.querySelector(`#${cardId}-next`).addEventListener('click', (e) => {
+                            e.preventDefault(); e.stopPropagation();
+                            currentImgIdx = (currentImgIdx + 1) % images.length;
+                            imgEl.src = images[currentImgIdx];
+                        });
+                    }
                 });
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-slate-800/40 rounded-2xl border border-slate-700/50">
+                        <p class="text-slate-300 text-lg">Добро пожаловать! ❄️</p>
+                        <p class="text-slate-400 text-sm mt-2">Каталог готов к работе. Создайте файл database.json для вывода товаров.</p>
+                    </div>
+                `;
             }
-        });
+        }
+        loadDynamicCatalog();
     </script>
 </body>
 </html>

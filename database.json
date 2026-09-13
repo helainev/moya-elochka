@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Дед Мороз",
+    "price": "10 500 руб.",
+    "status": "instock",
+    "images": [
+      "src/img/moroz1.jpg",
+      "src/img/moroz2.jpg",
+      "src/img/moroz3.jpg",
+      "src/img/moroz4.jpg",
+      "src/img/moroz5.jpg",
+      "src/img/moroz6.jpg"
+    ]
+  }
+]
