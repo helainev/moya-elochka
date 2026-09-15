@@ -140,22 +140,5 @@ if __name__ == "__main__":
     #text_command = "Добавь в каталог карточку. Название: 'Игрушка 6', статус: 'доступно для заказа', изображение: img/elochka6.jpg. Описание придумай сам." 
     #text_command = "Добавь в каталог карточку. Название: 'Игрушка 7', статус: 'доступно для заказа', изображение: img/elochka7.jpg. Описание придумай сам." 
     #text_command = "Добавь в каталог карточку. Название: 'Игрушка 8', статус: 'доступно для заказа', изображение: img/elochka8.jpg. Описание придумай сам." 
-    #text_command = "Ко всем игрушкам 1 - 8 поменяй описание, придумай сам исходя из соответствующих изображений, не повторясь" 
-    text_command = """Вставь код счетчика Яндекс Метрики в файл index.html внутрь тега <head>. 
-    Вот код счетчика, который нужно добавить без изменений:
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112673018', 'ym');
-
-    ym(112673018, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/112673018" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    """
-
+    text_command = "Ко всем игрушкам 1 - 8 поменяй описание, придумай сам исходя из соответствующих изображений, не повторясь" 
     ask_agent(text_command)
