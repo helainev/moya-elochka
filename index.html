@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-slate-900 via-slate-800 to-emerald-950 text-slate-100">
+<body class="bg-gradient-to-b from-slate-900 via-slate-800 to-emerald-950 text-slate-100 flex flex-col items-center justify-center min-h-screen">
     <div id="snowfall"></div>
     <header class="text-center py-10">
         <h1 class="text-5xl font-serif text-amber-400">Моя Ёлочка</h1>
@@ -41,31 +41,119 @@
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
         <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
             <img src="img/elochka1.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
-            <h3 class="text-xl font-bold mt-4">Игрушка 1</h3>
-            <p class="text-base mt-2">Описание игрушки</p>
+            <h3 class="text-xl font-bold mt-4">Ватная игрушка «Классический Дед Мороз»</h3>
+            <p class="text-base mt-2">Главный волшебник зимы, словно сошедший со страниц старинных новогодних сказок. Дедушка облачен в богатый белоснежный тулуп с пушистой меховой опушкой, из-под которого виден роскошный изумрудный кафтан с традиционным геометрическим орнаментом. В руках он крепко держит холщовый мешок с подарками, а его лицо, расписанное вручную, излучает невероятную мудрость, теплоту и добрую улыбку. Покрыт деликатным мерцающим слюдяным блеском, который создает эффект только что выпавшего новогоднего снега.</p>
             <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm inline-block mt-4">В наличии</span>
-            <a href="#" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105">
-                <i class="fas fa-envelope"></i> Заказать
-            </a>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
         </div>
         <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
             <img src="img/elochka2.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
-            <h3 class="text-xl font-bold mt-4">Игрушка 2</h3>
-            <p class="text-base mt-2">Описание игрушки</p>
+            <h3 class="text-xl font-bold mt-4">«Русская зима: Чай да Песни».</h3>
+            <p class="text-base mt-2">Очаровательный дуэт авторских ватных кукол, возвращающий в атмосферу уютного сказочного детства. Малыши одеты в объемные зимние шубки, словно слепленные из пушистого снега. Девочка в нарядном узорчатом кокошнике бережно держит миниатюрный золотой самовар, а румяный мальчик в теплой нежно-голубой шапке-ушанке задорно растягивает ладную гармошку с традиционным орнаментом. Игрушки выполнены полностью вручную из окрашенной ваты и клейстера по старинной технологии, а их лица с детальной росписью передают искренние живые эмоции.</p>
             <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
-            <a href="#" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105">
-                <i class="fas fa-envelope"></i> Заказать
-            </a>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka3.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Малышка с самоваром и баранками</h3>
+            <p class="text-base mt-2">Очаровательная авторская игрушка из ваты, бережно воссоздающая дух ушедшей эпохи и тепло старинных праздников. На фоне мерцающей новогодней ёлки и расписных домиков стоит маленькая румяная девочка, готовая к зимнему застолью.</p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka4.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Мальчик с гусем</h3>
+            <p class="text-base mt-2">Трогательная авторская миниатюра, возвращающая в атмосферу безмятежного зимнего детства и старых рождественских открыток.</p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka5.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Юный музыкант</h3>
+            <p class="text-base mt-2">Душевная и колоритная авторская миниатюра, пропитанная атмосферой старинного русского праздника. Круглолицый румяный мальчуган одет в объемный горчичный тулупчик с высоким воротником, подпоясанный простой зеленой бечевкой. В руках маленький музыкант уверенно держит свой главный повод для гордости — миниатюрную деревянную балалайку, украшенную традиционной хохломской росписью с узорами из спелых ягод.</p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka6.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Малыш в ушанке</h3>
+            <p class="text-base mt-2">Уютная и невероятно трогательная авторская миниатюра, словно сошедшая со страниц советского новогоднего календаря. </p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka7.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Сладкий подарок</h3>
+            <p class="text-base mt-2">Пленительная и бесконечно добрая авторская миниатюра, оживляющая воспоминания о самом долгожданном новогоднем гостинце. </p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
+        </div>
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-4 shadow-2xl text-center">
+            <img src="img/elochka8.jpg" alt="Игрушка" class="rounded-xl max-h-96 mx-auto object-contain mb-4">
+            <h3 class="text-xl font-bold mt-4">Барышня в расписном платке</h3>
+            <p class="text-base mt-2">Нежная и статная красавица, воплощающая поэтичный образ традиционной русской зимы</p>
+            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm inline-block mt-4">Доступно для заказа</span>
+            <div class="flex justify-center">
+                <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="showOrderMenu()">
+                    <i class="fas fa-envelope"></i> Заказать
+                </button>
+            </div>
         </div>
     </section>
+    <div id="order-menu" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-slate-800/80 backdrop-blur rounded-2xl p-8 shadow-2xl text-center">
+            <h2 class="text-2xl font-bold">Выберите способ заказа</h2>
+            <div class="flex flex-col gap-4 mt-4">
+                <a href="https://t.me/moya_elochka" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
+                    <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <a href="https://m.vk.ru/moya_elochka" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
+                    <i class="fab fa-vk"></i> VK
+                </a>
+                <a href="https://www.instagram.com/moya_elochka/" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+            <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-full mt-4 flex items-center gap-2 transition-transform hover:scale-105" onclick="hideOrderMenu()">
+                <i class="fas fa-times"></i> Закрыть
+            </button>
+        </div>
+    </div>
     <script>
-        const snowfall = document.getElementById('snowfall');
-        for (let i = 0; i < 100; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake', 'w-2', 'h-2', 'bg-white', 'rounded-full', 'absolute', 'top-0', 'left-0');
-            snowflake.style.left = Math.random() * 100 + '%';
-            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
-            snowfall.appendChild(snowflake);
+        function showOrderMenu() {
+            document.getElementById('order-menu').classList.remove('hidden');
+        }
+
+        function hideOrderMenu() {
+            document.getElementById('order-menu').classList.add('hidden');
         }
     </script>
 </body>
